@@ -1,13 +1,13 @@
-class WeatherForcast {
+class WeatherForecast {
   City? city;
   String? cod;
   double? message;
   int? cnt;
   List<WeatherList>? list;
 
-  WeatherForcast({this.city, this.cod, this.message, this.cnt, this.list});
+  WeatherForecast({this.city, this.cod, this.message, this.cnt, this.list});
 
-  WeatherForcast.fromJson(Map<String, dynamic> json) {
+  WeatherForecast.fromJson(Map<String, dynamic> json) {
     city = json['city'] != null ? new City.fromJson(json['city']) : null;
     cod = json['cod'];
     message = json['message'];
@@ -222,7 +222,7 @@ class FeelsLike {
     day = json['day'];
     night = json['night'];
     eve = json['eve'];
-    morn = json['morn'];
+    morn = json['morn'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
