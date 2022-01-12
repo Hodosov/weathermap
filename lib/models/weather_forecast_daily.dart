@@ -1,3 +1,5 @@
+import 'package:weathermap/utils/constants.dart';
+
 class WeatherForecast {
   City? city;
   String? cod;
@@ -177,6 +179,10 @@ class WeatherList {
     data['snow'] = this.snow;
     return data;
   }
+
+  String getIconUrl() {
+    return Constants.WEATHER_IMAGES_URL + weather![0].icon + '.png';
+  }
 }
 
 class Temp {
@@ -236,12 +242,16 @@ class FeelsLike {
 }
 
 class Weather {
-  int? id;
-  String? main;
-  String? description;
-  String? icon;
+  late int id;
+  late String main;
+  late String description;
+  late String icon;
 
-  Weather({this.id, this.main, this.description, this.icon});
+  Weather(
+      {required this.id,
+      required this.main,
+      required this.description,
+      required this.icon});
 
   Weather.fromJson(Map<String, dynamic> json) {
     id = json['id'];
