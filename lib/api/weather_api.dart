@@ -16,12 +16,7 @@ class WeatherApi {
 
     var uri = Uri.https(Constants.WEATHER_BASE_URL,
         Constants.WEATHER_FORECAST_PATH, queryParams);
-
-    log('request: ${uri.toString()}');
-
     var response = await http.get(uri);
-
-    print(response.body);
 
     if (response.statusCode == 200) {
       return WeatherForecast.fromJson(json.decode(response.body));
