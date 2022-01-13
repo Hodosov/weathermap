@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:weathermap/api/weather_api.dart';
 import 'package:weathermap/models/weather_forecast_daily.dart';
 import 'package:weathermap/widgets/city_view.dart';
+import 'package:weathermap/widgets/detail_view.dart';
 import 'package:weathermap/widgets/temp_view.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
@@ -56,7 +57,11 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                     const SizedBox(
                       height: 50,
                     ),
-                    TempView(snapshot: snapshot)
+                    TempView(snapshot: snapshot),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    DetailView(snapshot: snapshot)
                   ]);
                 } else {
                   return const Center(
