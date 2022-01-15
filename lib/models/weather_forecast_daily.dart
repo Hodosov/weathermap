@@ -226,7 +226,7 @@ class FeelsLike {
 
   FeelsLike.fromJson(Map<String, dynamic> json) {
     day = json['day'].toDouble();
-    night = json['night'];
+    night = json['night'].toDouble();
     eve = json['eve'];
     morn = json['morn'].toDouble();
   }

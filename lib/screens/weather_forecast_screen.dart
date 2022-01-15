@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:weathermap/api/weather_api.dart';
 import 'package:weathermap/models/weather_forecast_daily.dart';
+import 'package:weathermap/screens/city_screen.dart';
 import 'package:weathermap/widgets/bottom_list_view.dart';
 import 'package:weathermap/widgets/city_view.dart';
 import 'package:weathermap/widgets/detail_view.dart';
@@ -31,14 +32,28 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
-        title: Text('openwaethermap'),
+        title: const Text('openwaethermap'),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.my_location),
+          icon: const Icon(Icons.my_location),
           onPressed: () {},
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.location_city))
+          IconButton(
+              onPressed: () async {
+                var tappedName = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                  return CityScreen();
+                }));
+                if (tappedName != null) {
+                  setState(() {
+                    _cityName = tappedName;
+                  });
+                  forecastObject = WeatherApi()
+                      .fetchWeatherForecasWithCity(cityName: _cityName);
+                }
+              },
+              icon: const Icon(Icons.location_city))
         ],
       ),
       body: ListView(
