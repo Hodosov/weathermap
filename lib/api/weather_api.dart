@@ -7,8 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:weathermap/utils/location.dart';
 
 class WeatherApi {
-  Future<WeatherForecast> fetchWeatherForecas(
-      {String? cityName, bool? isCity}) async {
+  Future<WeatherForecast> fetchWeatherForecast({
+    String? cityName,
+  }) async {
     Location location = Location();
     await location.getCurrentLocation();
 

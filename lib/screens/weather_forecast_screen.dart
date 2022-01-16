@@ -26,7 +26,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     super.initState();
 
     if (widget.locationWeather != null) {
-      forecastObject = WeatherApi().fetchWeatherForecas();
+      forecastObject = WeatherApi().fetchWeatherForecast();
     }
   }
 
@@ -41,7 +41,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
           icon: const Icon(Icons.my_location),
           onPressed: () {
             setState(() {
-              forecastObject = WeatherApi().fetchWeatherForecas();
+              forecastObject = WeatherApi().fetchWeatherForecast();
             });
           },
         ),
@@ -57,7 +57,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                     _cityName = tappedName;
                   });
                   forecastObject =
-                      WeatherApi().fetchWeatherForecas(cityName: _cityName);
+                      WeatherApi().fetchWeatherForecast(cityName: _cityName);
                 }
               },
               icon: const Icon(Icons.location_city))

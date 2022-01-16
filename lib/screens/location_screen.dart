@@ -4,30 +4,26 @@ import 'package:weathermap/api/weather_api.dart';
 import 'package:weathermap/screens/weather_forecast_screen.dart';
 
 class LocationScreen extends StatefulWidget {
-  const LocationScreen({Key? key}) : super(key: key);
-
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
   void getLocationData() async {
-    var weatherInfo = await WeatherApi().fetchWeatherForecas();
-    if (weatherInfo == null) {
-      print('WeatherInfo was null: $weatherInfo');
-      return;
+    try {
+      var weatherInfo = await WeatherApi().fetchWeatherForecast();
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return WeatherForecastScreen(locationWeather: weatherInfo);
+      }));
+    } catch (e) {
+      print('$e');
     }
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return WeatherForecastScreen(
-        locationWeather: weatherInfo,
-      );
-    }));
+  }
 
-    @override
-    void initState() {
-      super.initState();
-      getLocationData();
-    }
+  @override
+  void initState() {
+    super.initState();
+    getLocationData();
   }
 
   @override
